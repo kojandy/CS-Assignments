@@ -1,0 +1,337 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ | \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework\ \#1}
+\newcommand{\hmwkDueDate}{September 20, 2016}
+\newcommand{\hmwkClass}{CS204}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Prof. Sungwon Kang}
+\newcommand{\hmwkAuthorName}{Ohjun Kwon}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59pm}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ | \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\textbf{20160051 \hmwkAuthorName}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+\textbf{(a)}
+$q \land p \to \lnot r$
+
+\textbf{(b)}
+If the car won't start, then neither there is water in the cylinders nor the head gasket is blown.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+$\lnot r \to \lnot (p \lor q)$
+
+\textbf{(b)}
+If you are in Kwangju, then you are in South Korea but not in Seoul.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(i)}
+$a\iff \top,b\iff \top$
+\begin{align*}
+(a \lor b) \land (\lnot (a\land b)) &\iff (\top \lor \top) \land \lnot (\top \land \top) \\
+&\iff \top \land \lnot \top \\
+&\iff \top \land \bot \\
+&\iff \bot
+\end{align*}
+\begin{align*}
+(a\leftrightarrow \lnot b) &\iff (\top \leftrightarrow \lnot \top) \\
+&\iff (\top \leftrightarrow \bot) \\
+&\iff \bot
+\end{align*}
+
+We can calculate all of the answers in this way and make a table \ref{tab:1}.
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{c | c || c | c}
+		$a$ & $b$ & $(a \lor b) \land (\lnot (a\land b))$ & $a\leftrightarrow \lnot b$ \\
+		\hline
+		T & T & F & F \\
+		T & F & T & T \\
+		F & T & T & T \\
+		F & F & F & F
+	\end{tabular}
+	\caption{truth table}
+	\label{tab:1}
+\end{table}
+If you look at the third and fourth column of the table \ref{tab:1}, then you can tell that the result of the two expressions are same. Therefore, you can say that $(a \lor b) \land (\lnot (a\land b))$ and $a\leftrightarrow \lnot b$ are logically equivalent. \qed
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A sufficient condition for the given statement: $x$ is a multiple of four.
+\\
+
+\solution
+
+If $x=4k$ ($k$ is an integer), then $x/2 = 2k$, which means that $x/2$ is an even integer.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+The result of $\lnot (p \land q)$ can be deduced easily using the already-known value $p\land q$ which is shown in fourth column in the table \ref{tab:2}.
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{c | c || c | c | c}
+		$p$ & $q$ & $p\uparrow q$ & $p\land q$ & $\lnot (p \land q)$ \\
+		\hline
+		T & T & F & T & F \\
+		T & F & T & F & T \\
+		F & T & T & F & T \\
+		F & F & T & F & T
+	\end{tabular}
+	\caption{truth table}
+	\label{tab:2}
+\end{table}
+
+The results of $p\uparrow q$ and $\lnot (p \land q)$ are exactly same. Therefore, we can conclude that $p\uparrow q$ is logically equivalent to $\lnot (p \land q)$. \qed
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\part
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{c | c || c | c }
+		$p$ & $q$ & $(p\uparrow q)\uparrow(p\uparrow q)$ & $p\land q$ \\
+		\hline
+		T & T & T & T \\
+		T & F & F & F \\
+		F & T & F & F \\
+		F & F & F & F
+	\end{tabular}
+	\caption{truth table}
+	\label{tab:3}
+\end{table}
+
+The third and the fourth column on table \ref{tab:3} is identical, which means $(p\uparrow q)\uparrow(p\uparrow q)$ and $p\land q$ are logically equivalent. \qed
+\\
+
+\part
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{c | c || c | c | c | c }
+		$p$ & $q$ & $p\uparrow p$ & $q\uparrow q$ & $(p\uparrow p)\uparrow(q\uparrow q)$ & $p\lor q$ \\
+		\hline
+		T & T & F & F & T & T \\
+		T & F & F & T & T & T \\
+		F & T & T & F & T & T \\
+		F & F & T & T & F & F
+	\end{tabular}
+	\caption{truth table}
+	\label{tab:4}
+\end{table}
+
+The sixth and the seventh column on table \ref{tab:4} is identical, which means $(p\uparrow p)\uparrow(q\uparrow q)$ and $p\lor q$ are logically equivalent. \qed
+\\
+
+\part
+
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{c | c || c | c }
+		$p$ & $q$ & $p\uparrow(q\uparrow q)$ & $p\to q$ \\
+		\hline
+		T & T & T & T \\
+		T & F & F & F \\
+		F & T & T & T \\
+		F & F & T & T
+	\end{tabular}
+	\caption{truth table}
+	\label{tab:5}
+\end{table}
+
+The sixth and the seventh column on table \ref{tab:4} is identical, which means $(p\uparrow p)\uparrow(q\uparrow q)$ and $p\lor q$ are logically equivalent. \qed
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{l | c}
+		Statement & Reasons \\
+		\hline
+		1. $p\land (q\lor r)$ & given \\
+		2. $\lnot(p\land q)$ & given \\
+		\hline
+		3. $\lnot p\lor \lnot q$ & De Morgan's law \\
+		4. $\lnot q\lor \lnot p$ & commutativity \\
+		5. $q\to \lnot p$ & implication \\
+		6. $p$ & simplification, 1 \\
+		7. $\lnot (\lnot p)$ & double negation \\
+		8. $\lnot q$ & \textit{modus tollens}, 6, 5 \\
+		9. $(q\lor r)\land p$ & commutativity, 1 \\
+		10. $q\lor r$ & simplification \\
+		11. $r\lor q$ & commutativity \\
+		12. $\lnot(\lnot r)\lor q$ & double negation \\
+		13. $\lnot r\to q$ & implication \\
+		14. $\lnot(\lnot r)$ & \textit{modus tollens}, 8, 13 \\
+		15. $r$ & double negation \\
+		16. $p\land r$ & conjunction, 6, 15 
+	\end{tabular}
+	\caption{proof sequence}
+	\label{tab:6}
+\end{table}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{l | c}
+		Statement & Reasons \\
+		\hline
+		1. $p$ & given \\
+		2. $p\to r$ & given \\
+		3. $q\to \lnot r$ & given \\
+		\hline
+		4. $\lnot q \lor \lnot r$ & implication \\
+		5. $\lnot r \lor \lnot q$ & commutativity \\
+		6. $r\to \lnot q$ & implication \\
+		7. $r$ & \textit{modus ponens}, 1, 2 \\
+		8. $\lnot q$ & \textit{modus ponens}, 7, 6
+	\end{tabular}
+	\caption{proof sequence}
+	\label{tab:7}
+\end{table}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Is $a\to \lnot a$ a contradiction?
+\\
+
+\solution
+
+No, it is not. If we have $\bot$ for $a$, then the given statement is $\bot \to \top$, which is true (not a contradiction). \qed
+\end{homeworkProblem}
+\end{document}

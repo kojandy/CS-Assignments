@@ -1,0 +1,325 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{fitch}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ | \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework\ \#2}
+\newcommand{\hmwkDueDate}{September 29, 2016}
+\newcommand{\hmwkClass}{CS204}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Prof. Sungwon Kang}
+\newcommand{\hmwkAuthorName}{Ohjun Kwon}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59pm}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ | \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\textbf{20160051 \hmwkAuthorName}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+\textbf{(a)}
+All penguins are dangerous.
+
+\textbf{(b)}
+Some penguins are dangerous.
+
+\textbf{(c)}
+There is no penguin that is dangerous.
+
+\textbf{(d)}
+Some penguins are not dangerous.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+$(\forall x)(L(x)\to F(x))$
+
+\textbf{(b)}
+$(\forall x)(L(x)\land F(x))$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+$(\exists x)P(x)$
+
+\textbf{(b)}
+$(\forall x)(P(x)\to \lnot Q(x))$
+
+\textbf{(c)}
+$(\exists x)(\lnot P(x) \land \lnot Q(x))$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+$(\forall x)(\exists y)(N(x)\to P(x,y))$
+
+\textbf{(b)}
+\begin{align}
+\lnot \forall x\exists y(N(x)\to P(x,y)) &\Leftrightarrow \exists x \lnot \exists y (N(x)\to P(x,y)) \\
+&\Leftrightarrow \exists x \forall y \lnot (N(x)\to P(x,y)) \\
+&\Leftrightarrow \exists x \forall y \lnot (\lnot N(x) \lor P(x,y)) \\
+&\Leftrightarrow \exists x \forall y (\lnot \lnot N(x) \land \lnot P(x,y)) \\
+&\Leftrightarrow \exists x \forall y (N(x) \land \lnot P(x,y))
+\end{align}
+(1): universal negation \\
+(2): existential negation \\
+(3): material implication \\
+(4): De Morgan's law \\
+(5): double negation \\
+
+\textbf{(c)}
+$\exists x \forall y (N(x) \land \lnot P(x,y))$
+
+There is some integer x such that $x\neq 0$ and $xy\neq 1$ for all integers y.
+
+\textbf{(d)}
+\textbf{(b)} is true.
+
+\textbf{Proof}
+
+case \textbf{(a)}: for all integers x, y that satisfies $xy=1$ is uniquely exists as $y=1/x$, which does not belong to the integer set. The statement satisfies When x is $-1$ or $1$, but it does not cover all integers.
+
+case \textbf{(b)}: if we select $2$ as $x$, then it satisfies two statement, $x\neq 0$ and $xy\neq 1$, for any integer y.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+For all traders who work at the Tokyo Stock Exchange, there exists a trader that makes less money than him/her.
+
+\textbf{(b)}
+There exists a trader $A$, that makes more money than any trader other than $A$.
+
+\textbf{(c)}
+\textbf{(a)} is an impossible statement, because there should be a minimum in a finite set(traders who work at the Tokyo Stock Exchange). Then, if we pick a minimum, then there will be no traders that satisfy the statement. Therefore, the minimum is the counter-example of the statement, and it proves that the \textbf{(a)} is a false statement. In the similar context, if we pick a trader who has a maximum income for $A$, there will be no trader who make more money other than $A$. It satisfies the statement \textbf{(b)}.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Domain: $\mathbb{R}$
+
+$R(x)$: x is rational.
+\\
+
+Given statement: $\forall x \forall y ((R(x)\land \lnot R(y))\to \lnot R(x+y))$
+
+Negation: 
+\begin{align}
+\lnot \forall x \forall y ((R(x)\land \lnot R(y))\to \lnot R(x+y)) &\Leftrightarrow \exists x \lnot \forall y ((R(x)\land \lnot R(y))\to \lnot R(x+y)) \\
+&\Leftrightarrow \exists x \exists y \lnot ((R(x)\land \lnot R(y))\to \lnot R(x+y)) \\
+&\Leftrightarrow \exists x \exists y \lnot (\lnot(R(x)\land \lnot R(y))\lor \lnot R(x+y)) \\
+&\Leftrightarrow \exists x \exists y (\lnot \lnot(R(x)\land \lnot R(y))\land \lnot \lnot R(x+y)) \\
+&\Leftrightarrow \exists x \exists y ((R(x)\land \lnot R(y))\land R(x+y)) \\
+&\Leftrightarrow \exists x \exists y (R(x)\land \lnot R(y)\land R(x+y))
+\end{align}
+(6): universal negation \\
+(7): universal negation \\
+(8): material implication \\
+(9): De Morgan's law \\
+(10): double negation \\
+(11): associativity
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+\begin{align}
+\lnot (\exists x) (R(x) \land B(x)) &\Leftrightarrow (\forall x)\lnot (R(x)\land B(x)) \\
+&\Leftrightarrow (\forall x)(\lnot R(x)\lor \lnot B(x)) \\
+&\Leftrightarrow (\forall x)(R(x)\to \lnot B(x))
+\end{align}
+(12): existential negation \\
+(13): De Morgan's law \\
+(14): material implication \\
+
+\textbf{(b)}
+There is no triangle that is a right triangle and also has an obtuse angle.
+
+\textbf{(c)}
+For all triangles $x$, if $x$ is a right triangle, then $x$ does not have an obtuse angle.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+I will give a example by using predicates from \textbf{Problem 7}.
+
+Domain: triangles \\
+Predicates: \\
+$R(x)$= $x$ is a right triangle.\\
+$B(x)$= $x$ has an obtuse angle.\\
+
+$(\exists x)(P(x)\land Q(x))$: There exists a triangle that is a right triangle and also has an obtuse angle.
+
+$(\exists x)P(x)\land (\exists x)Q(x)$: There exists a triangle that is a right triangle, and there also exists a triangle that has an obtuse angle.\\
+
+The first statement is false, because if a triangle has both right and obtuse angle, the sum of the interior angles exceeds $180^\circ$. However, as we know, the sum of the interior angles of a triangle should be $180^\circ$. For the second sentence, of course, there exists a right triangle, and a triangle that has an obtuse angle. Therefore, the second statement is true. The result of the statements are different, so they are not logically equivalent.\\
+
+\textbf{(b)}
+The given two statements can be translated into ordinary English as below.
+
+$(\exists x)(P(x)\lor Q(x))$: There exists a triangle that is a right triangle or has an obtuse angle.\\
+$(\exists x)P(x)\lor (\exists x)Q(x)$: There exists a triangle that is a right triangle, or there exists a triangle that has an obtuse angle.\\
+
+The first and second sentences can be satisfied either a right triangle or a triangle that has an obtuse angle.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(a)}
+$\exists x T(x),\forall x(T(x)\to P(x))\vdash \exists y(T(y)\land P(y))$
+\[
+\begin{nd}
+\hypo{1}{\exists x T(x)}
+\hypo{2}{\forall x(T(x)\to P(x))}
+\open[a]
+\have{3}{T(a)\to P(a)}\Ae{2}
+\open
+\hypo{4}{T(a)}
+\have{5}{P(a)}\ie{3,4}
+\have{6}{T(a)\land P(a)}\ai{4,5}
+\close
+\have{7}{T(a)\land P(a)}\Ee{1,4-6}
+\close
+\have{8}{\exists y(T(y)\land P(y))}\Ei{7}
+\end{nd}
+\]
+
+\textbf{(b)}
+$\forall x(P(x)\land Q(x))\vdash \forall xP(x)\land \forall yQ(y)$
+\[
+\begin{nd}
+\hypo{1}{\forall x(P(x)\land Q(x))}
+\open[t]
+\have{2}{P(t)\land Q(t)}\Ae{1}
+\have{3}{P(t)}\ae{2}
+\have{4}{Q(t)}\ae{2}
+\close
+\have{5}{\forall x P(x)}\Ai{3}
+\have{6}{\forall y Q(y)}\Ai{4}
+\have{7}{\forall xP(x)\land \forall yQ(y)}\ai{5,6}
+\end{nd}
+\]
+\end{homeworkProblem}
+\end{document}
