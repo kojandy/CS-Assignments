@@ -1,0 +1,304 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ | \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework\ \#8}
+\newcommand{\hmwkDueDate}{December 8, 2016}
+\newcommand{\hmwkClass}{CS204}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Prof. Sungwon Kang}
+\newcommand{\hmwkAuthorName}{Ohjun Kwon}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59pm}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ | \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\textbf{20160051 \hmwkAuthorName}}
+\date{}
+
+\renewcommand{\part}{\textbf{\large (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+\begin{homeworkProblem}
+    We can make $m\times n$ relations out of two sets $A$ and $B$, becuase we have to pick one element in each sets.
+    There are m elements in the set $A$ and n elements in the set $B$,
+    so by the multiplication rule there are $m\times n$ binary relations.
+
+    In other words, a binary relation is an ordered pair(an element from the set $A\times B$),
+    so by the multiplication rule, there are $|A|\cdot |B|$ ordered pairs,
+    which is $m\times n$.
+    
+    $\therefore mn$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    There are $2\cdot 2\cdot 2\cdot 2=2^4=16$ binary sequences if the sequence's length is 4,
+    and we want to encode the decimal digits 0-9 with this sequences.
+    We can calculate the distinct way of representing the digits with sequences by choosing a sequence
+    for each digits respectively.
+    We can choose a sequence for encoding the digit 0 within 16 binary sequences. After choosing that,
+    we can choose another sequence for the digit 1 within the sequences excluding the previously selected sequence.
+    Continuing this for the digits 0 through 9, we can calculate the number of distinct ways to encode the given decimal digits.
+
+    $\therefore 16\cdot 15\cdot 14\dots 9\cdot 8\cdot 7={}_{16}P_{10}=29059430400$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \part
+    In order to make a word have even number of 1s, we have to choose even numbers of position to put 1.
+    Then, set selected position 1 and 0 for other positions. The numbers of the words will be
+    ${}_nC_0+{}_nC_2+{}_nC_4+\dots$.
+    We can calculate the expression with binomial expansion.
+    From the Equation~\ref{eq:giv}, we can obtain Equation~\ref{eq:ob1} and Equation~\ref{eq:ob2} by
+    substituting $x=1$ and $x=-1$ respectively.
+    \begin{align}
+        (1+x)^n&=\sum_{k=0}^n {n\choose k} x^k\label{eq:giv}\\
+        2^n&=\sum_{k=0}^n {n\choose k}\label{eq:ob1}\\
+        0&=\sum_{k=0}^n {n\choose k}(-1)^k\label{eq:ob2}
+    \end{align}
+    By adding Equation~\ref{eq:ob1} and Equation~\ref{eq:ob2}, we obtain Equation~\ref{eq:ob3} which is the answer we were looking for.
+    \begin{align*}
+        2^n&=2\left( {n\choose 0}+{n\choose 2}+{n\choose 4}+\dots \right) \\
+        2^{n-1}&={n\choose 0}+{n\choose 2}+{n\choose 4}+\dots \numberthis \label{eq:ob3}
+    \end{align*}
+    $\therefore 2^{n-1}$
+    \\
+
+    \part
+    Similar to \textbf{(a)}, we have to calculate ${}_nC_1+{}_nC_3+\dots$.
+    We can calculate this by subtracting Equation~\ref{eq:ob2} from Equation~\ref{eq:ob1}.
+    \begin{align*}
+        2^n&=2\left( {n\choose 1}+{n\choose 3}+{n\choose 5}+\dots \right) \\
+        2^{n-1}&={n\choose 1}+{n\choose 3}+{n\choose 5}+\dots
+    \end{align*}
+    $\therefore 2^{n-1}$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    We can think this problem as choosing numbers in 1 to 5. For example, if we got H for the first trial.
+    It can be considered equally with choosing 1 out of five numbers.
+    Same way, if we get HHTTT as a result, we can interpret this result as we have chosen 1, 2 within 1 to 5.
+    Using this of interpretation, we can answer the given questions.
+    For the first two questions, we can think the problem as picking one and two numbers in 1 to 5.
+    Therefore, the answers will be $_5C_1$ and $_5C_2$, respectively.
+    $\therefore 5, 10$
+
+    For the last problem, which is the generalization of the previous questions,
+    we can think this problem as picking r numbers within n numbers.
+
+    $\therefore {}_nC_r$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \begin{align*}
+        {}_nC_{r-1}+{}_nC_r&=\frac{n!}{(r-1)!(n-r+1)!}+\frac{n!}{r!(n-r)!}\\
+        &=\frac{n!\times r}{r!(n+1-r)!}+\frac{n!\times (n+1-r)}{r!(n+1-r)!}\\
+        &=\frac{n!(r+n+1-r)}{r!(n+1-r)!}\\
+        &=\frac{(n+1)!}{r!(n+1-r)!}\\
+        &={}_{n+1}C_r
+    \end{align*}
+    \qedsymbol
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    There are 9 letters in the word \textbf{INANENESS}, so there are 9! ways to rearrange the letters.
+    However, the word contains duplicate letters such as \textbf{N} and \textbf{E},
+    so there will be duplicates in 9! ways of rearrangements.
+    We can count out these duplicates by counting the possible rearrangements with the duplicate letters.
+    For example, with the word \textbf{AAB}, there are only 3 possible rearrangements \textbf{AAB}, \textbf{ABA}, \textbf{BAA}.
+    However, there are two duplicate letters \textbf{A}, and its number of possible rearrangements is 2!.
+    Then, the overall number of possible rearrangements considering the duplicate letters will become $\frac{3!}{2!}=3$.
+    Therefore, we can exclude duplicated rearrangements with dividing the possible rearrangements from the duplicate letters,
+    and there are three \textbf{N}s, two \textbf{E}s, and two \textbf{S}s in the given word.
+
+    $\displaystyle \therefore \frac{9!}{3!2!2!}=15120$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    If we don't think about the symmetry, there will be $8!=40320$ ways of putting glasses.
+    However, there will be duplicates if we count this way since we have to consider the symmetry.
+    We can remove these duplicate counts by dividing the number with the possible duplicate of a one pattern.
+    From a pattern like Table~\ref{tab:givpat}, we can make 3 other patterns out of the given pattern.
+    As we can see in Table~\ref{tab:sapa}, we can make total 4 patterns including the original pattern from one pattern.
+    The represented patterns in Table~\ref{tab:sapa} are rotated 180$^\circ$, flipped vertically, and flipped horizontally from left to right.
+    In other words, we have counted 1 pattern as 4 pattern.
+    Therefore, we have to divide $40320$ with $4$.
+    \begin{table}[!htb]
+        \begin{tabular}{| c | c | c | c |}
+            \hline
+            1&2&3&4\\
+            \hline
+            5&6&7&8\\
+            \hline
+        \end{tabular}
+        \centering
+        \caption{given pattern}
+        \label{tab:givpat}
+    \end{table}
+    \begin{table}[!htb]
+        \begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c | c | c |}
+            \cline{1-4}\cline{6-9}\cline{11-14}
+            8&7&6&5&&4&3&2&1&&5&6&7&8\\
+            \cline{1-4}\cline{6-9}\cline{11-14}
+            4&3&2&1&&8&7&6&5&&1&2&3&4\\
+            \cline{1-4}\cline{6-9}\cline{11-14}
+        \end{tabular}
+        \centering
+        \caption{patterns that are considered same}
+        \label{tab:sapa}
+    \end{table}
+
+    $\therefore 8!/4=10080$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    All of the natural numbers can be divided into to even and odd.
+    However, if we categorize three numbers,
+    there will be a set which has at least two numbers in it by pigeonhole principle.
+    If we add up these two numbers, the result will be even.
+    ($\because \mbox{even}+\mbox{even}=\mbox{even}$, $\mbox{odd}+\mbox{odd}=\mbox{even}$)
+    \qedsymbol
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    If there are $n$ number of classrooms and 12 different time slots are available,
+    we can accommodate total $12n$ classes. The college wants to offer 250 differenct classes,
+    so the number of possible classes should not be lesser than 250.
+    $12n \geq 250 \Leftrightarrow n\geq 20.8333\dots$
+
+    $\therefore$ There should be at least 21 number of classrooms.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    There will be $100-12=88$ losing tickets, and these losing tickets will be divided in to 13 streaks with 12 winning tickets.
+    Let $X$ be the losing tickets, $C$ be the group, and $f:X\to C$ be the function that returns the group $f(x)$
+    which the owner of the losing ticket $x$ belongs to.
+    Then, we have to find the maximum $k$ that satisfies $88>13(k-1)$.
+
+    $\therefore k=7$
+\end{homeworkProblem}
+\end{document}
