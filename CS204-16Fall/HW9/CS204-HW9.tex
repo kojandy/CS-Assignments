@@ -1,0 +1,220 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ | \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{Homework\ \#9}
+\newcommand{\hmwkDueDate}{December 15, 2016}
+\newcommand{\hmwkClass}{CS204}
+\newcommand{\hmwkClassTime}{Section A}
+\newcommand{\hmwkClassInstructor}{Prof. Sungwon Kang}
+\newcommand{\hmwkAuthorName}{Ohjun Kwon}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 11:59pm}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ | \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\textbf{20160051 \hmwkAuthorName}}
+\date{}
+
+\renewcommand{\part}{\textbf{\large (\alph{partCounter})}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+\begin{homeworkProblem}
+    The overall participants that are going to win the prize will be 3 people out of 100 participants.
+    Therefore, the probability that a participant of the contest wins one of prizes will be $3/100$.
+    $\therefore 3/100$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 2
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \part
+    First, we can think the total permutation of a, a, 2, 3, which is $4!/2!$.
+    Then, we can put 1 and 4 in the position of a's in order of 1, 4,
+    because the statement says ``1 precedes 4''.
+    For example, 3a2a makes the sequence 3124.
+    $\therefore 12$
+    \\
+
+    \part
+    We can think this problem in same way as the \textbf{Problem 3 (a)}.
+    If we put 4 and 1 consecutively in the a's positions, we can get sequences that satisfies the given statement.
+    $\therefore 12$
+    \\
+
+    \part
+    We can think this problem as picking 3's position in \_4\_a\_a\_, and put 1 and 2 in a's position randomly.
+    Therefore, there is three possible 3's seats, and two ways to put 1 and 2.
+    $\therefore 3\times 2=6$
+    \\
+
+    \part
+    We can think this problem as putting 4 in front of the random permutations of $\{1,2,3\}$.
+    $\therefore 3!=6$
+    \\
+
+    \part
+    We can think this problem as putting 4 and 3 consecutively in a's positions, and 2 and 1 consecutively in b's positions
+    in the permutation of aabb.
+    For example, if we get abba out of the permutation of aabb, it means 4213.
+    $\displaystyle \therefore \frac{4!}{2!2!}=6$
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 4
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \begin{align*}
+        E[\mbox{score}]&=50\times 2\times 0.9+25\times 4\times 0.8\\
+        &=90+80\\
+        &=170
+    \end{align*}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 6
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 7
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 8
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 9
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    % prob 10
+\end{homeworkProblem}
+\end{document}
