@@ -1,0 +1,123 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{bussproofs}
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkClass\ (\hmwkClassInstructor): \hmwkTitle}
+\rhead{\hmwkAuthorName}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+\newcommand{\hmwkTitle}{Homework\ \#6}
+\newcommand{\hmwkDueDate}{April 11, 2017}
+\newcommand{\hmwkClass}{CS320}
+\newcommand{\hmwkClassInstructor}{Prof. Sukyoung Ryu}
+\newcommand{\hmwkAuthorName}{Ohjun Kwon}
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at 2:30pm}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor}}
+    \vspace{3in}
+}
+
+\author{\textbf{20160051 \hmwkAuthorName}}
+\date{}
+
+\begin{document}
+% \maketitle
+% \pagebreak
+\textbf{\large{Big-step operational semantics of BFAE}}
+\begin{align*}
+    e::=&\ |\ n\\
+    &\ |\ e+e\\
+    &\ |\ e-e\\
+    &\ |\ x\\
+    &\ |\ \lambda x.e\\
+    &\ |\ e\ e\\
+    &\ |\ \mbox{ref}\ e\\
+    &\ |\ e:=e\\
+    &\ |\ !e\\
+    &\ |\ e;e\\
+    &\ |\ (e)
+\end{align*}
+$n$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash n\Rightarrow n, M$}
+\end{prooftree}
+$e+e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e_1\Rightarrow v_1,M_1$}
+    \AxiomC{$\sigma, M_1\vdash e_2\Rightarrow v_2,M_2$}
+    \BinaryInfC{$\sigma, M\vdash e_1+e_2\Rightarrow v_1+v_2, M_2$}
+\end{prooftree}
+$e-e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e_1\Rightarrow v_1,M_1$}
+    \AxiomC{$\sigma, M_1\vdash e_2\Rightarrow v_2,M_2$}
+    \BinaryInfC{$\sigma, M\vdash e_1-e_2\Rightarrow v_1+v_2, M_2$}
+\end{prooftree}
+$x$
+\begin{prooftree}
+    \AxiomC{$x\in \mbox{Domain}(\sigma)$}
+    \UnaryInfC{$\sigma, M\vdash x\Rightarrow \sigma(x), M$}
+\end{prooftree}
+$\lambda x.e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash \lambda x.e\Rightarrow \left<\lambda x.e,\sigma\right>, M$}
+\end{prooftree}
+$e\ e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e_1\Rightarrow \left<\lambda x.e,\sigma'\right>,M_1$}
+    \AxiomC{$\sigma, M_1\vdash e_2\Rightarrow v_2, M_2$}
+    \AxiomC{$\sigma'[x\mapsto v_2],M_2\vdash e\Rightarrow v, M_3$}
+    \TrinaryInfC{$\sigma, M\vdash e_1\ e_2\Rightarrow v,M_3$}
+\end{prooftree}
+$\mbox{ref}\ e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e\Rightarrow v,M_1$}
+    \AxiomC{$M_1,v\vdash M_1\left[\left(|M_1|+1\right)\mapsto v\right]\Rightarrow M_2$}
+    \BinaryInfC{$\sigma, M\vdash\mbox{ref}\ e\Rightarrow \left<|M_1|+1\right>,M_2$}
+\end{prooftree}
+$e:=e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e_1\Rightarrow \left<a\right>, M_1$}
+    \AxiomC{$\sigma, M_1\vdash e_2\Rightarrow v, M_2$}
+    \AxiomC{$M_2, a, v\vdash M_2[a\mapsto v]\Rightarrow M_3$}
+    \TrinaryInfC{$\sigma, M\vdash e_1:=e_2\Rightarrow v, M_3$}
+\end{prooftree}
+$!e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e\Rightarrow \left<a\right>,M_1$}
+    \AxiomC{$\sigma, M_1\vdash M_1(a)\Rightarrow v,M_1$}
+    \BinaryInfC{$\sigma, M\vdash\ !e\Rightarrow v, M_1$}
+\end{prooftree}
+$e;e$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e_1\Rightarrow v_1, M_1$}
+    \AxiomC{$\sigma, M_1\vdash e_2\Rightarrow v_2, M_2$}
+    \BinaryInfC{$\sigma, M\vdash e_1;e_2\Rightarrow v_2,M_2$}
+\end{prooftree}
+$(e)$
+\begin{prooftree}
+    \AxiomC{$\sigma, M\vdash e\Rightarrow v, M_1$}
+    \UnaryInfC{$\sigma, M\vdash (e)\Rightarrow v, M_1$}
+\end{prooftree}
+\end{document}
