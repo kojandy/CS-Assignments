@@ -13,3 +13,9 @@
 - CS206: Data Structure
 - CS230: System Programming
 - CS320: Programming Language
+
+### Fall
+- CS311: Computer Organization
+- CS322: Formal Languages and Automata
+- CS341: Introduction to Computer Networks
+- CS492: Special Topics in Computer Science<Program Analysis>
